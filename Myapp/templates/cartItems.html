@@ -1,0 +1,182 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Home page</title>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+        />
+
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    </head>
+    <body>
+        <div class="container-fluid">
+            <!-- navbar -->
+            <div class="col-12 col-lg-12 m-0 p-0">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="container-fluid">
+                        <img
+                            src="{% static 'images/l-removebg-preview.png' %}"
+                            alt="logo"
+                            class="img-fluid"
+                            style="width: 100px"
+                        />
+                        <button
+                            class="navbar-toggler"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#navbarScroll"
+                            aria-controls="navbarScroll"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation"
+                        >
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarScroll">
+                            <ul
+                                class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll ms-2"
+                                style="--bs-scroll-height: 100px"
+                            >
+                                <li class="nav-item dropdown">
+                                    <a
+                                        class="nav-link dropdown-toggle"
+                                        href="#"
+                                        id="navbarScrollingDropdown"
+                                        role="button"
+                                        data-bs-toggle="dropdown"
+                                        aria-expanded="false"
+                                    >
+                                        Categories
+                                    </a>
+                                    <ul
+                                        class="dropdown-menu"
+                                        aria-labelledby="navbarScrollingDropdown"
+                                    >
+                                        <li>
+                                            <a class="dropdown-item" href="#"
+                                                >DataScience</a
+                                            >
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#"
+                                                >Software Development</a
+                                            >
+                                        </li>
+
+                                        <li>
+                                            <a class="dropdown-item" href="#"
+                                                >Python</a
+                                            >
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#"
+                                                >PHP</a
+                                            >
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#"
+                                                >JavaScript</a
+                                            >
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#"
+                                                >Webdevelopment</a
+                                            >
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <form
+                                        class="d-flex"
+                                        method="get"
+                                        action="{% url 'search_course' %}"
+                                    >
+                                        <input
+                                            class="form-control me-2"
+                                            type="search"
+                                            name="q"
+                                            placeholder="Search courses here"
+                                            aria-label="Search"
+                                        />
+                                        <button
+                                            class="btn btn-outline-dark"
+                                            type="submit"
+                                        >
+                                            Search
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="text-center mt-5"></div>
+
+            <div class="d-flex justify-content-center align-self-center">
+                <div class="col-12 col-lg-6 align-items-center">
+                    {% for i in course %}
+                    <div class="card mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img
+                                    src="{{i.item.course_image.url}}"
+                                    alt="course image"
+                                    class="img-fluid"
+                                />
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        {{i.item.course_name}}
+                                    </h5>
+                                    <p class="card-text">
+                                        {{i.item.description}}
+                                    </p>
+                                    <p class="card-text">
+                                        <small class="text-muted"
+                                            >${{i.amount}}</small
+                                        >
+                                    </p>
+                                    <div class="justify-content-end mt-2">
+                                        <a
+                                            class="btn btn-outline-dark ms-2 me-2"
+                                            href="{% url 'dashboard'%}"
+                                        >
+                                            Back
+                                        </a>
+                                        <a
+                                            class="btn btn-primary"
+                                            href="{% url 'app' i.item.id i.id %}"
+                                            >Buy</a
+                                        >
+                                        <a
+                                            class="btn btn-danger"
+                                            href="{% url 'delete-cart' i.id %}"
+                                            onclick="return confirm('Are you sure you want to delete?')"
+                                            >Remove</a
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <script
+            src="https://kit.fontawesome.com/e5dd95e34e.js"
+            crossorigin="anonymous"
+        ></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="{% static 'js/script.js' %}"></script>
+    </body>
+</html>

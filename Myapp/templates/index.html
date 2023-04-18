@@ -1,0 +1,557 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Home page</title>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+        />
+
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div
+                class="alert alert-warning alert-dismissible fade show text-center"
+                role="alert"
+            >
+                {% for i in offer %}
+                <strong>Heyyy!</strong> New Offer:{{i.course_id.course_name}}
+                only {{i.offerprice}}
+                <a href="{% url 'buy' i.course_id.id %}" class="btn btn-info"
+                    >Details</a
+                >
+                {% endfor %}
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert"
+                    aria-label="Close"
+                ></button>
+            </div>
+            <!-- navbar -->
+            <div class="col-12 col-lg-12 m-0 p-0">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="container-fluid">
+                        <img
+                            src="{% static 'images/l-removebg-preview.png' %}"
+                            alt="logo"
+                            class="img-fluid"
+                            style="width: 100px"
+                        />
+                        <button
+                            class="navbar-toggler"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#navbarScroll"
+                            aria-controls="navbarScroll"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation"
+                        >
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarScroll">
+                            <ul
+                                class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll ms-2"
+                                style="--bs-scroll-height: 100px"
+                            >
+                                <li class="nav-item dropdown">
+                                    <a
+                                        class="nav-link dropdown-toggle"
+                                        href="#"
+                                        id="navbarScrollingDropdown"
+                                        role="button"
+                                        data-bs-toggle="dropdown"
+                                        aria-expanded="false"
+                                    >
+                                        Categories
+                                    </a>
+                                    <ul
+                                        class="dropdown-menu"
+                                        aria-labelledby="navbarScrollingDropdown"
+                                    >
+                                        <li>
+                                            <a class="dropdown-item" href="#"
+                                                >DataScience</a
+                                            >
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#"
+                                                >Software Development</a
+                                            >
+                                        </li>
+
+                                        <li>
+                                            <a class="dropdown-item" href="#"
+                                                >Python</a
+                                            >
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#"
+                                                >PHP</a
+                                            >
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#"
+                                                >JavaScript</a
+                                            >
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#"
+                                                >Webdevelopment</a
+                                            >
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <form
+                                        class="d-flex"
+                                        method="get"
+                                        action="{% url 'search_course' %}"
+                                    >
+                                        <input
+                                            class="form-control me-2"
+                                            type="search"
+                                            name="q"
+                                            placeholder="Search courses here"
+                                            aria-label="Search"
+                                        />
+                                        <button
+                                            class="btn btn-outline-dark"
+                                            type="submit"
+                                        >
+                                            Search
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                            <div class="d-flex">
+                                <div>
+                                    <a href=""
+                                        ><i
+                                            class="fa-solid fa-cart-shopping text-dark fs-5 mt-2"
+                                        ></i>
+                                    </a>
+                                </div>
+                                <div class="ms-3">
+                                    <input
+                                        type="button"
+                                        value="Login"
+                                        class="btn btn-outline-dark"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal"
+                                    />
+                                </div>
+                                <div class="ms-3">
+                                    <a
+                                        href="{% url 'signup' %}"
+                                        class="btn btn-dark text-white"
+                                        >SignUp</a
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <!-- carousel -->
+            <div class="mt-4">
+                <div
+                    id="carouselExampleInterval"
+                    class="carousel slide"
+                    data-bs-ride="carousel"
+                >
+                    <div class="carousel-inner">
+                        <div
+                            class="carousel-item active"
+                            data-bs-interval="10000"
+                        >
+                            <img
+                                src="{% static 'images/img1.jpg' %}"
+                                class="d-block w-50 mx-auto"
+                                alt="..."
+                            />
+                        </div>
+                        <div class="carousel-item" data-bs-interval="2000">
+                            <img
+                                src="{% static 'images/free-online-courses.png' %}"
+                                class="d-block w-50 mx-auto"
+                                alt="..."
+                            />
+                        </div>
+                        <div class="carousel-item">
+                            <img
+                                src="{% static 'images/best-online-coding-course-providers-main.webp' %}"
+                                class="d-block w-50 mx-auto"
+                                alt="..."
+                            />
+                        </div>
+                        <div class="carousel-item">
+                            <img
+                                src="{% static 'images/Best-Free-Certifications-Online.webp' %}"
+                                class="d-block w-50 mx-auto"
+                                alt="..."
+                            />
+                        </div>
+                    </div>
+                    <button
+                        class="carousel-control-prev"
+                        type="button"
+                        data-bs-target="#carouselExampleInterval"
+                        data-bs-slide="prev"
+                    >
+                        <span
+                            class="carousel-control-prev-icon"
+                            aria-hidden="true"
+                        ></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button
+                        class="carousel-control-next"
+                        type="button"
+                        data-bs-target="#carouselExampleInterval"
+                        data-bs-slide="next"
+                    >
+                        <span
+                            class="carousel-control-next-icon"
+                            aria-hidden="true"
+                        ></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+            <!-- courses -->
+            <div class="container mx-auto my-3">
+                <h1>A broad selection of courses</h1>
+
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs mt-2" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button
+                            class="nav-link active"
+                            id="python-tab"
+                            data-bs-toggle="tab"
+                            data-bs-target="#python"
+                            type="button"
+                            role="tab"
+                            aria-controls="python"
+                            aria-selected="true"
+                        >
+                            Python
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button
+                            class="nav-link"
+                            id="php-tab"
+                            data-bs-toggle="tab"
+                            data-bs-target="#php"
+                            type="button"
+                            role="tab"
+                            aria-controls="php"
+                            aria-selected="false"
+                        >
+                            PHP
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button
+                            class="nav-link"
+                            id="js-tab"
+                            data-bs-toggle="tab"
+                            data-bs-target="#js"
+                            type="button"
+                            role="tab"
+                            aria-controls="js"
+                            aria-selected="false"
+                        >
+                            JavaScript
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button
+                            class="nav-link"
+                            id="ds-tab"
+                            data-bs-toggle="tab"
+                            data-bs-target="#ds"
+                            type="button"
+                            role="tab"
+                            aria-controls="ds"
+                            aria-selected="false"
+                        >
+                            DataScience
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button
+                            class="nav-link"
+                            id="sd-tab"
+                            data-bs-toggle="tab"
+                            data-bs-target="#sd"
+                            type="button"
+                            role="tab"
+                            aria-controls="sd"
+                            aria-selected="false"
+                        >
+                            Software Development
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button
+                            class="nav-link"
+                            id="wd-tab"
+                            data-bs-toggle="tab"
+                            data-bs-target="#wd"
+                            type="button"
+                            role="tab"
+                            aria-controls="wd"
+                            aria-selected="false"
+                        >
+                            Web Development
+                        </button>
+                    </li>
+                </ul>
+                <!-- tab content -->
+                <div class="tab-content mt-4" id="myTabContent">
+                    <div
+                        class="tab-pane fade show active"
+                        id="python"
+                        role="tabpanel"
+                        aria-labelledby="python-tab"
+                    >
+                        <h3>Expand your career opportunities with Python</h3>
+                        <div class="row gap-5">
+                            <!-- Add a div element here -->
+                            {% for i in python %}
+                            <div class="card" style="width: 18rem">
+                                <img
+                                    src="{{ i.course_image.url }}"
+                                    class="card-img-top"
+                                    alt="..."
+                                />
+                                <div class="card-body">
+                                    <p class="card-text">{{i.course_name}}</p>
+                                    <p class="card-text">{{i.description}}</p>
+                                    <a
+                                        href="{% url 'buy' i.id %}"
+                                        class="btn btn-info"
+                                        >Buy</a
+                                    >
+                                </div>
+                            </div>
+
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div
+                        class="tab-pane fade"
+                        id="php"
+                        role="tabpanel"
+                        aria-labelledby="php-tab"
+                    >
+                        <h3>Expand your career opportunities with PHP</h3>
+                        <div>
+                            <!-- Add a div element here -->
+                            {% for i in php %}
+                            <div class="card" style="width: 18rem">
+                                <img
+                                    src="{{ i.course_image.url }}"
+                                    class="card-img-top"
+                                    alt="..."
+                                />
+                                <div class="card-body">
+                                    <p class="card-text">{{i.course_name}}</p>
+                                    <p class="card-text">{{i.description}}</p>
+                                    <a
+                                        href="{% url 'buy' i.id %}"
+                                        class="btn btn-info"
+                                        >Buy</a
+                                    >
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div
+                        class="tab-pane fade"
+                        id="js"
+                        role="tabpanel"
+                        aria-labelledby="js-tab"
+                    >
+                        <h3>
+                            Grow your software development skills with
+                            JavaScript
+                        </h3>
+                        <div>
+                            <!-- Add a div element here -->
+                            {% for i in js %}
+                            <div class="card" style="width: 18rem">
+                                <img
+                                    src="{{ i.course_image.url }}"
+                                    class="card-img-top"
+                                    alt="..."
+                                />
+                                <div class="card-body">
+                                    <p class="card-text">{{i.course_name}}</p>
+                                    <p class="card-text">{{i.description}}</p>
+                                    <a
+                                        href="{% url 'buy' i.id %}"
+                                        class="btn btn-info"
+                                        >Buy</a
+                                    >
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div
+                        class="tab-pane fade"
+                        id="ds"
+                        role="tabpanel"
+                        aria-labelledby="ds-tab"
+                    >
+                        <h3>Lead data-driven decisions with Data Science</h3>
+                        <div class="card" style="width: 18rem">
+                            <img
+                                src="{% static 'images/ds.jpg' %}"
+                                class="card-img-top"
+                                alt="..."
+                            />
+                            <div class="card-body">
+                                <p class="card-text">
+                                    Some quick example text to build on the card
+                                    title and make up the bulk of the card's
+                                    content.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="tab-pane fade"
+                        id="sd"
+                        role="tabpanel"
+                        aria-labelledby="sd-tab"
+                    >
+                        <h3>Making applications that change lives</h3>
+                        <div class="card" style="width: 18rem">
+                            <img
+                                src="{% static 'images/sd.jpg' %}"
+                                class="card-img-top"
+                                alt="..."
+                            />
+                            <div class="card-body">
+                                <p class="card-text">
+                                    Some quick example text to build on the card
+                                    title and make up the bulk of the card's
+                                    content.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="tab-pane fade"
+                        id="wd"
+                        role="tabpanel"
+                        aria-labelledby="wd-tab"
+                    >
+                        <h3>
+                            Build websites and applications with Web Development
+                        </h3>
+                        <div class="card" style="width: 18rem">
+                            <img
+                                src="{% static 'images/web.jpg' %}"
+                                class="card-img-top"
+                                alt="..."
+                            />
+                            <div class="card-body">
+                                <p class="card-text">
+                                    Some quick example text to build on the card
+                                    title and make up the bulk of the card's
+                                    content.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Close the div element here -->
+                    </div>
+                </div>
+                <!-- course div closed -->
+            </div>
+
+            <!-- login modal -->
+            <div
+                class="modal fade"
+                id="exampleModal"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+            >
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">
+                                Login
+                            </h5>
+                            <button
+                                type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                            ></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="" method="POST">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-12 col-sm-12">
+                                        <input
+                                            type="text"
+                                            placeholder="User Name"
+                                            name="user_name"
+                                            class="form-control mb-2"
+                                        />
+                                    </div>
+                                    <div class="col-12 col-sm-12">
+                                        <input
+                                            type="password"
+                                            placeholder="Password"
+                                            class="form-control"
+                                            name="password"
+                                        />
+                                    </div>
+                                </div>
+
+                                <p>
+                                    <a href="{% url 'password_reset' %}"
+                                        >Forgotten your password?</a
+                                    >
+                                </p>
+
+                                <div class="modal-footer">
+                                    <input
+                                        type="Submit"
+                                        value="SUBMIT"
+                                        class="btn btn-primary"
+                                    />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- main div closed	 -->
+        </div>
+        <script
+            src="https://kit.fontawesome.com/e5dd95e34e.js"
+            crossorigin="anonymous"
+        ></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="{% static 'js/script.js' %}"></script>
+    </body>
+</html>

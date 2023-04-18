@@ -1,0 +1,119 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Home page</title>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+        />
+
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    </head>
+    <body>
+        <div class="text-center mt-5">
+            <h2>Please Login To Buy This Course</h2>
+        </div>
+        <div
+            class="container-fluid d-flex justify-content-center align-self-center"
+        >
+            <div
+                class="d-flex col-12 col-lg-6 justify-content-between vh-100 align-items-center"
+            >
+                <div class="col-12 col-lg-6">
+                    <img
+                        src="{{course.course_image.url}}"
+                        alt="course image"
+                        class="img-fluid"
+                    />
+                </div>
+                <div class="col-12 col-lg-6">
+                    <h4>{{course.course_name}}</h4>
+                    <p>{{course.description}}</p>
+                    <h5>${{course.price}}</h5>
+                    <div class="d-flex justify-content-end mt-2">
+                        <input
+                            type="button"
+                            value="Login"
+                            class="btn btn-outline-dark"
+                            data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- login modal -->
+        <div
+            class="modal fade"
+            id="exampleModal"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">
+                            Login
+                        </h5>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                        ></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{% url 'log1' course.id%}" method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-12 col-sm-12">
+                                    <input
+                                        type="text"
+                                        placeholder="User Name"
+                                        name="user_name"
+                                        class="form-control mb-2"
+                                    />
+                                </div>
+                                <div class="col-12 col-sm-12">
+                                    <input
+                                        type="password"
+                                        placeholder="Password"
+                                        class="form-control"
+                                        name="password"
+                                    />
+                                </div>
+                            </div>
+
+                            <p>
+                                <a href="{% url 'password_reset' %}"
+                                    >Forgotten your password?</a
+                                >
+                            </p>
+
+                            <div class="modal-footer">
+                                <input
+                                    type="Submit"
+                                    value="SUBMIT"
+                                    class="btn btn-primary"
+                                />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script
+            src="https://kit.fontawesome.com/e5dd95e34e.js"
+            crossorigin="anonymous"
+        ></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="{% static 'js/script.js' %}"></script>
+    </body>
+</html>

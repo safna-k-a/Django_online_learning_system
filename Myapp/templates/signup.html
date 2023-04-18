@@ -1,0 +1,105 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Registration</title>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+        />
+
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+        <style>
+            .form-container {
+                width: 50%;
+                margin: auto;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            th,
+            td {
+                padding: 10px;
+                text-align: left;
+            }
+
+            th {
+                width: 30%;
+            }
+
+            label {
+                display: inline-block;
+                width: 100%;
+                margin-bottom: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <div
+            class="form-container bg-primary bg-opacity-25 text-center p-5 mt-5"
+        >
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <h2 class="mb-4">Sign Up Here!</h2>
+                <table>
+                    <tr>
+                        <th>
+                            <label for="{{user_form.username.id_for_label}}"
+                                >Name:</label
+                            >
+                        </th>
+                        <td>{{user_form.username}}</td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label for="{{user_form.email.id_for_label}}"
+                                >Email:</label
+                            >
+                        </th>
+                        <td>{{user_form.email}}</td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label for="{{user_form.password1.id_for_label}}"
+                                >Password:</label
+                            >
+                        </th>
+                        <td>{{user_form.password1}}</td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label for="{{user_form.password2.id_for_label}}"
+                                >Confirm Password:</label
+                            >
+                        </th>
+                        <td>{{user_form.password2}}</td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label for="{{image_form.image.id_for_label}}"
+                                >Image:</label
+                            >
+                        </th>
+                        <td>{{image_form.image}}</td>
+                    </tr>
+                </table>
+                <input
+                    type="submit"
+                    value="Submit"
+                    class="btn btn-primary mt-4"
+                    style="width: 100px"
+                />
+            </form>
+        </div>
+
+        <script src="{% static 'js/script.js' %}"></script>
+    </body>
+</html>

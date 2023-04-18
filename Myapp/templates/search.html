@@ -1,0 +1,58 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Home page</title>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+        />
+
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    </head>
+    <body
+        style="background: linear-gradient(to bottom, #b4e4ff, #e3f2fd)"
+        class="vh-100"
+    >
+        <div
+            class="container-fluid d-flex flex-row flex-wrap justify-content-center align-items-center"
+        >
+            {% for i in course %}
+            <div class="card m-3" style="width: 18rem">
+                <img
+                    src="{{ i.course_image.url }}"
+                    class="card-img-top"
+                    alt="..."
+                />
+                <div class="card-body">
+                    <h5 class="card-title">{{ i.course_name }}</h5>
+                    <p class="card-text">{{ i.description }}</p>
+                    <h6 class="card-subtitle mb-2">$ {{ i.price }}</h6>
+                    <div class="d-flex justify-content-end">
+                        <a
+                            class="btn btn-outline-dark ms-2 me-2"
+                            href="{% url 'dashboard'%}"
+                            >Back</a
+                        >
+                        <a class="btn btn-primary" href="{% url 'log' i.id %}"
+                            >Buy</a
+                        >
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <script
+            src="https://kit.fontawesome.com/e5dd95e34e.js"
+            crossorigin="anonymous"
+        ></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="{% static 'js/script.js' %}"></script>
+    </body>
+</html>
